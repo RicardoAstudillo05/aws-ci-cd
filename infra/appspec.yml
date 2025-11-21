@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ec2-user/aws-ci-cd
+
+hooks:
+  BeforeInstall:
+    - location: infra/scripts/stop.sh
+      timeout: 300
+  AfterInstall:
+    - location: infra/scripts/install.sh
+      timeout: 300
+  ApplicationStart:
+    - location: infra/scripts/start.sh
+      timeout: 300
